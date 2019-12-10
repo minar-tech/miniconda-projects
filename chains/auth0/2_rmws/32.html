@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="See a growing list of Auth0's Technical How-To's and Development Tutorial articles. From Angular, React, and other tutorials to building Node APIs, and far beyond">
+    <link rel="shortcut icon" href="https://cdn.auth0.com/styleguide/components/1.0.8/media/logos/img/favicon.png">
+    <link href="https://cdn.auth0.com/styleguide/core/2.0.4/fonts/fakt/FaktPro-Normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="https://cdn.auth0.com/styleguide/core/3.0.0/core.min.css">
+    <link rel="stylesheet" href="https://cdn.auth0.com/styleguide/components/2.0.0/components.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="/blog/css/main.css">
+    <!-- <meta property="fb:admins" content="YOUR_FB_USER_ID" /> -->
+<meta property="fb:app_id" content="534074790006350"/>
+  <meta property="og:title" content="Developers">
+<meta property="og:site_name" content="Auth0 - Blog" />
+<meta property="og:url" content="https://auth0.com/blog/developers/page4/" />
+  <meta property="og:image" content="https://cdn.auth0.com/blog/illustrations/auth0.png">
+  <meta property="og:description" content="See a growing list of Auth0's Technical How-To's and Development Tutorial articles. From Angular, React, and other tutorials to building ..." />
+  <meta property="og:type" content="website">
+<!-- Twitter Cards -->
+<meta name="twitter:site" content="@auth0">
+<meta name="twitter:creator" content="@auth0">
+  <meta name="twitter:title" content="Developers">
+  <meta name="twitter:url"  content="https://auth0.com/blog/developers/page4/">
+  <meta name="twitter:description" content="See a growing list of Auth0's Technical How-To's and Development Tutorial articles. From Angular, React, and other tutorials to building Node APIs, and far beyond">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.auth0.com/blog/illustrations/auth0.png">
+<meta name="twitter:image:height" content="512">
+<meta name="twitter:image:width" content="1024">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+      <title>Auth0 Technical How-To's & Dev Tutorials</title>
+    <link rel="manifest" href="/blog/manifest.json">
+    <script src="//use.typekit.net/tde2fii.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn.auth0.com/js/auth0/9.0.1/auth0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.min.js"></script>
+    <script src="https://npmcdn.com/auth0-contact-form@2.0.12/cdn/contact-form.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/auth0-contact-form@2.0.12/cdn/contact-form.css" />
+    <script src="https://cdn2.auth0.com/js/m/metrics-1.min.js"></script>
+    <script src="https://cdn.auth0.com/website/sliding-popup/1.0.43/sliding-popup.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      !function(){
+        var metricsLib = window.metricsLib = window.metricsLib || [];
+        // A list of the methods in metrics.js to stub.
+        metricsLib.methods = [
+          'segment',
+          'track',
+          'setUserId',
+          'identify',
+          'alias',
+          'page',
+          'getData',
+          'ready',
+          'traits'
+        ];
+        metricsLib.factory = function(method){
+          return function(){
+            var args = Array.prototype.slice.call(arguments);
+            args.unshift(method);
+            metricsLib.push(args);
+            return metricsLib;
+          };
+        };
+        for (var i = 0; i < metricsLib.methods.length; i++) {
+          var key = metricsLib.methods[i];
+          metricsLib[key] = metricsLib.factory(key);
+        }
+        metricsLib.load = function(segmentKey, dwhEndpoint){
+          if(null != window.Auth0Metrics){
+            window.metricsLib = new Auth0Metrics(segmentKey, dwhEndpoint, 'blog');
+          }else{
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = ('https:' === document.location.protocol
+              ? 'https://' : 'http://')
+              + 'cdn.auth0.com/js/m/metrics-1.min.js';
+            script.onerror = function(){
+              console.error("No metrics");
+            }
+            script.onload = function(){
+              // Grab analytics and make it private
+              window.metricsLib = new Auth0Metrics(segmentKey, dwhEndpoint, 'blog');
+            }
+            var first = document.getElementsByTagName('script')[0];
+            first.parentNode.insertBefore(script, first);
+          }
+        };
+        var SEGMENT_KEY =  'aaB6w2BsRwUcGbRSUY7X22FPAa1NL3BL' ;
+        var DWH_ENDPOINT =  'https://dwh-tracking.it.auth0.com/dwh-metrics' ;
+        if (DWH_ENDPOINT) {
+          //- We should catch for an undefined DWH_ENDPOINT
+          metricsLib.load(SEGMENT_KEY, DWH_ENDPOINT);
+        } else {
+          console.error("DWH_ENDPOINT must be defined for tracking to work.")
+        }
+        }();
+    </script>
+    <script src="//cdn.auth0.com/js/ab/ab-1.min.js"></script>
+    <script src="//cdn.auth0.com/js/ab/ab-loader-1.min.js"></script>
+    <meta name="robots" content="noindex, noarchive, follow" />
+        <link rel="canonical" href="https://auth0.com/blog/developers/page4/" />
+        <link rel="amphtml" href="https://auth0.com/blog/amp/developers/page4/" />
+    <link type="application/atom+xml" rel="alternate" href="https://auth0.com/blog/rss.xml" title="Auth0 Blog" />
+  <link type="application/opensearchdescription+xml" rel="search" href="https://auth0.com/blog/osd.xml"/>
+  <link rel="stylesheet" href="/blog/css/vendor/selection-sharer.min.css" />
+</head>
+  <body itemscope itemtype="http://schema.org/WebPage">
+    <aside id="popup"></aside>
+    <div class="container">
+  <div class="pn-popup" role="alert">
+      <div class="pn-popup-container">
+          <p>﻿⁠⁠⁠⁠Do you want to receive a desktop notification when new content is published?</p>
+          <div class="pn-buttons">
+              <button id="push-allow">YES</button>
+              <button id="push-block" >NO</button>
+          </div>
+          <div class="arrow"></div>
+      </div>
+  </div>
+</div>
+<nav class="blog-header">
+  <!-- <div class="nav-border"> -->
+  <div class="site-nav">
+    <!-- ///LEFT SIDE LOGOS DESKTOP/// -->
+    <div class="logo-container">
+      <a class="auth0-logo" href="https://auth0.com/" target="_blank" rel="noopener">
+        <img src="https://cdn.auth0.com/website/blog-new/logo-white-auth0.svg" alt="auth0 logo">
+      </a>
+      <div class="vertical-line"></div>
+      <a class="blog-logo" href="/blog/">
+        <img src="https://cdn.auth0.com/website/blog-new/logo-white-blog.svg" alt="blog logo">
+      </a>
+    </div>
+    <!-- ///MENU ITEMS/// -->
+    <ul id="menu">
+            <li><a class="page-link" id="developers" href="/blog/developers/">Developers</a></li>
+            <li><a class="page-link" id="identity" href="/blog/identity-and-security/">Identity &amp; Security</a></li>
+            <li><a class="page-link" id="business" href="/blog/business/">Business</a></li>
+            <li><a class="page-link" id="culture" href="/blog/culture/">Culture</a></li>
+            <li><a class="page-link" id="engineering" href="/blog/engineering/">Engineering</a></li>
+            <li><a class="page-link" id="announcements" href="/blog/announcements/">Announcements</a></li>
+    </ul>
+    <!-- ///DESKTOP RIGHT HAND BUTTONS/// -->
+    <div class="nav-buttons">
+      <button class="talk-to-sales navbar-button">Talk To Sales</button>
+      <a class="sign-up navbar-button" href="#" onclick="window.signup()">Sign Up</a>
+        <div class="search-img-container">
+          <img class="search-img" id="search-button" onclick="openSearchBanner()"
+            src="https://cdn.auth0.com/website/blog-new/search-icon-desktop.svg" alt="search icon desktop">
+        </div>
+    </div>
+    <!-- ///MOBILE RIGHT HAND BUTTONS/// -->
+    <div class="nav-buttons mobile">
+        <div class="search-img-container">
+          <img class="search-img mobile" onclick="openSearchBanner()"
+            src="https://cdn.auth0.com/website/blog-new/search-icon-mobile.svg" alt="search icon mobile">
+        </div>
+      <img id="hamburger" src="https://cdn.auth0.com/website/blog-new/hamburger-menu.svg" alt="mobile menu icon">
+    </div>
+  </div>
+  <!-- </div> -->
+  <!-- ///SEARCH WHITE PANEL BAR/// -->
+  <div  class="search-bar">
+    <div class="search-bar-module">
+      <form class="search-bar-wrapper" id="submit-search" action="/blog/search/" method="get">
+        <img id="search-img-placeholder" src="/blog/assets/img/search.svg" alt="search icon">
+        <input type="text" id="search-input" autocomplete="off" placeholder="Search" name="query">
+        <input type="image" id="search-input-submit" src="/blog/assets/img/search-submit-arrow.svg"
+          alt="Submit">
+      </form>
+        <hr>
+        <ul id="search-results" class="search-dropdown-results"></ul>
+    </div>
+  </div>
+</nav>
+<!-- ///MOBILE OVERLAY MENU/// -->
+<div class="menu-mobile-wrapper">
+  <ul id="menu-mobile">
+          <li><a class="page-link" id="Developers" href="/blog/developers/">Developers</a></li>
+          <li><a class="page-link" id="Identity & Security" href="/blog/identity-and-security/">Identity &amp; Security</a></li>
+          <li><a class="page-link" id="Business" href="/blog/business/">Business</a></li>
+          <li><a class="page-link" id="Culture" href="/blog/culture/">Culture</a></li>
+          <li><a class="page-link" id="Engineering" href="/blog/engineering/">Engineering</a></li>
+          <li><a class="page-link" id="Announcements" href="/blog/announcements/">Announcements</a></li>
+    <li class="menu-mobile-buttons">
+      <a class="sign-up navbar-button" href="#" onclick="window.signup()">Try Auth0 For Free</a>
+      <button class="talk-to-sales navbar-button">Talk To Sales</button>
+    </li>
+  </ul>
+</div>
+<section class="search-overlay">
+  <article class="section-container">
+    <div class="author-all-posts">
+      <h3 class="home-subheaders">Search Results</h3>
+      <ul id="results-container" class="categories posts-container">
+      </ul>
+    </div>
+  </article>
+</section>
+<!-- ///MOBILE MENU/// -->
+<script type="text/javascript">
+  let url = window.location.href.split("/");
+  let currentBaseUrl = url.slice(0, 4).join("/");
+  $('#hamburger').click(function () {
+    if (!$('.menu-mobile-wrapper').hasClass('active')) {
+      $('.menu-mobile-wrapper').addClass('active');
+      $('.overlay').addClass('no-content');
+      $('.logo-container').addClass('mobile-overlay');
+      $('.search-img-container').css('visibility', 'hidden');
+      $('#hamburger').attr('src', 'https://cdn.auth0.com/website/blog-new/close-button-mobile.svg');
+      $('.nav-border').css('border-bottom', 'none');
+    } else {
+      $('.menu-mobile-wrapper').removeClass('active');
+      $('.overlay').removeClass('no-content');
+      $('.logo-container').removeClass('mobile-overlay');
+      $('.search-img-container').css('visibility', 'visible');
+      $('#hamburger').attr('src', 'https://cdn.auth0.com/website/blog-new/hamburger-menu.svg');
+      $('.nav-border').css('border-bottom', '1px solid #CDD2D4');
+    }
+  })
+</script>
+<!-- search drop down -->
+<script src="/blog/assets/js/search.js" type="text/javascript"></script>
+<script src="/blog/assets/js/simple-jekyll-search.js" type="text/javascript"></script>
+<script type="text/javascript">
+  if(!!SimpleJekyllSearch) {
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('search-results'),
+      json: '/blog/search.json',
+      searchResultTemplate: '<li><h4>{category}</h4><a href="{url}">{title}</a></li>',
+      noResultsText: '<h4>No results</h4>',
+      limit: 5,
+      fuzzy: false,
+      exclude: ['Welcome']
+    })
+  }
+</script>
+    <main class="overlay">
+<section id="category-page">
+  <article class="section-container">
+    <h3 class="category-header">Developers</h3>
+    <ul class="categories posts-container">
+      <li class="categories post-box">
+        <a href="/blog/how-to-use-angular-console/">
+          <figure class="img-container illustration" style="background-image: url(https://cdn.auth0.com/blog/illustrations/angular.png)"></figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">Angular Console</h4>
+            <h3>A Tour of Angular Console</h3>
+            <p>Learn how to create workspaces, generate code, run tasks, and install extensions with Angular Console.</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/using-jwts-for-graphql-authorization-with-hasura/">
+          <figure class="img-container" style="background: #4a4a4a">
+            <img src="https://cdn.auth0.com/blog/logos/graphql-logo.png" alt="post.title">
+          </figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">Hasura</h4>
+            <h3>Using JWTs for GraphQL Authorization with Hasura</h3>
+            <p>Learn about the Hasura platform and how their GraphQL APIs can be secured using JSON Web Tokens</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/use-voiceit-as-second-factor-auth/">
+          <figure class="img-container" style="background: #2f333b">
+            <img src="https://cdn.auth0.com/blog/logos/voiceit.png" alt="post.title">
+          </figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">VoiceIt</h4>
+            <h3>Use VoiceIt as a Second Authentication Factor with Auth0</h3>
+            <p>Learn how to use VoiceIt's photo and video recognition as an additional layer of authentication for your application.</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/avoiding-java-boilerplate-code-with-project-lombok/">
+          <figure class="img-container illustration" style="background-image: url(https://cdn.auth0.com/blog/illustrations/java.png)"></figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">Java</h4>
+            <h3>Avoiding Java Boilerplate Code with Project Lombok</h3>
+            <p>This article demonstrates how you can use Project Lombok library to avoid boilerplate code from your Java projects.</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/overview-of-react-hooks/">
+          <figure class="img-container illustration" style="background-image: url(https://cdn.auth0.com/blog/illustrations/react.png)"></figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">React</h4>
+            <h3>Overview of React Hooks</h3>
+            <p>Learn what's new with React Hooks. For example, use state in a functional component.</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/securing-kubernetes-clusters-with-istio-and-auth0/">
+          <figure class="img-container" style="background: #2A3F68">
+            <img src="https://cdn.auth0.com/blog/istio/istio-logo.png" alt="post.title">
+          </figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">Istio</h4>
+            <h3>Securing Kubernetes Clusters with Istio and Auth0</h3>
+            <p>Learn how to secure your Kubernetes clusters with Istio (a popular open-source service mesh) and Auth0.</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/web-authentication-webauthn-overview-demo-tool/">
+          <figure class="img-container" style="background: #0F3454">
+            <img src="https://cdn.auth0.com/blog/logos/webauthn2.png" alt="post.title">
+          </figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">WebAuthn</h4>
+            <h3>Launching WebAuthn.me - Overview & Login Demo</h3>
+            <p>Learn about WebAuthn with the interactive playground WebAuthn.me</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/end-to-end-testing-with-cypress-and-auth0/">
+          <figure class="img-container" style="background: #0700BA">
+            <img src="https://cdn.auth0.com/blog/cypress-tests/logo.png" alt="post.title">
+          </figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">Cypress</h4>
+            <h3>End-to-End Testing with Cypress and Auth0</h3>
+            <p>Learn how to programmatically authenticate against Auth0 in your Cypress tests in a manner that adheres to both Cypress and Auth0 best practices.</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/ngatlanta-is-changing-tech/">
+          <figure class="img-container" style="background: #012C6C">
+            <img src="https://cdn.auth0.com/blog/logos/angular.png" alt="post.title">
+          </figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">ngAtlanta</h4>
+            <h3>NgAtlanta is Changing Tech</h3>
+            <p>Auth0’s Ado Kukic, Kim Maida, and Sam Julien all participated in ngAtlanta, an Angular conference focused on diversity and inclusion.</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/ngrx-facades-pros-and-cons/">
+          <figure class="img-container" style="background: #2f333b">
+            <img src="https://cdn.auth0.com/blog/logos/ngrx.png" alt="post.title">
+          </figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">NgRx</h4>
+            <h3>NgRx Facades: Pros and Cons</h3>
+            <p>Learn about the facade pattern, why you may or may not want to use one with NgRx, and how to create a facade.</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/building-a-reverse-proxy-in-dot-net-core/">
+          <figure class="img-container" style="background: #3A1C5D">
+            <img src="https://cdn.auth0.com/blog/asp-net-core-tutorial/logo.png" alt="post.title">
+          </figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">.NET</h4>
+            <h3>Building a Reverse Proxy in .NET Core</h3>
+            <p>Learn how to use .NET Core to implement a reverse proxy to overcome specific needs.</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/build-react-apps-using-react-hooks-and-auth0-auth-popup/">
+          <figure class="img-container illustration" style="background-image: url(https://cdn.auth0.com/blog/illustrations/react.png)"></figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">React</h4>
+            <h3>React Tutorial with Popup Authentication</h3>
+            <p>Build a React application using popup authentication and React Hooks</p>
+          </div>
+        </a>
+      </li>
+      <li class="categories post-box">
+        <a href="/blog/auth0-ambassador-program-in-2018-by-the-numbers/">
+          <figure class="img-container illustration" style="background-image: url(https://cdn.auth0.com/blog/ambassador-program/astronaut-hero.png)"></figure>
+          <div class="text-box">
+              <h4 style="color:#E5AF44">Ambassador</h4>
+            <h3>Auth0 Ambassador Program in 2018 — By The Numbers</h3>
+            <p>Find out how the Auth0 Ambassador program achieved its mission of empowering the developer community in 2018.</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <!-- pagination -->
+      <ul class="pagination">
+        <div class="pagination-border">
+          <li class="pagination-item previous">
+              <a href="/blog/developers/page3/"><i class="fas fa-angle-double-left"></i></a>
+          </li>
+              <li class="pagination-item">
+                  <a href="/blog/developers/page2/" title="Developers">2</a>
+              </li>
+              <li class="pagination-item">
+                  <a href="/blog/developers/page3/" title="Developers">3</a>
+              </li>
+              <li class="pagination-item selected">
+                  <a href="/blog/developers/page4/" title="Developers">4</a>
+              </li>
+              <li class="pagination-item">
+                  <a href="/blog/developers/page5/" title="Developers">5</a>
+              </li>
+              <li class="pagination-item">
+                  <a href="/blog/developers/page6/" title="Developers">6</a>
+              </li>
+          <li class="pagination-item next">
+              <a href="/blog/developers/page5/"><i class="fas fa-angle-double-right"></i></a>
+          </li>
+        </div>
+      </ul>
+  </article>
+</section>
+      <footer class="blog-footer">
+  <section class="never-compromise">
+    <div class="title-wrapper">
+      <h2>Never Compromise <br>
+      on Identity</h2>
+    </div>
+    <div class="button-wrapper">
+      <a class="sign-up pre-footer" onclick="window.signup()">Try Auth0 for free</a>
+      <button class="talk-to-sales pre-footer">Talk To Sales</button>
+    </div>
+    </section>
+  <section class="footer-grid">
+    <article class="section-container">
+      <ul class="footer-column">
+        <li class="footer-row">
+          <h3>Blog</h3>
+          <p><a href="/blog/developers/">Developers</a></p>
+          <p><a href="/blog/identity-and-security/">Identity & Security</a></p>
+          <p><a href="/blog/business/">Business</a></p>
+          <p><a href="/blog/culture/">Culture</a></p>
+          <p><a href="/blog/engineering/">Engineering</a></p>
+          <p><a href="/blog/announcements/">Announcements</a></p>
+        </li>
+        <li class="footer-row">
+          <h3>Company</h3>
+          <p><a href="https://auth0.com/about/">About Us</a></p>
+          <p><a href="https://auth0.com/customers/">Customers</a></p>
+          <p><a href="https://auth0.com/security/">Security</a></p>
+          <p><a href="https://auth0.com/careers/">Careers</a></p>
+          <p><a href="https://auth0.com/partners/">Partners</a></p>
+          <p><a href="https://auth0.com/press/">Press</a></p>
+        </li>
+        <li class="footer-row">
+          <h3>Product</h3>
+          <p><a href="https://auth0.com/single-sign-on/">Single Sign-On</a></p>
+          <p><a href="https://auth0.com/breached-passwords/">Password Detection</a></p>
+          <p><a href="https://auth0.com/multifactor-authentication/">Guardian</a></p>
+          <p><a href="https://auth0.com/machine-to-machine/">M2M</a></p>
+          <p><a href="https://auth0.com/universal-login/">Universal Login</a></p>
+          <p><a href="https://auth0.com/passwordless/">Passwordless</a></p>
+        </li>
+        <li class="footer-row">
+          <h3>More</h3>
+          <p><a href="https://auth0.com/" target="_blank">Auth0.com</a><span><img src="/blog/assets/img/external-link.svg" /></span></p>
+          <p><a href="https://auth0.com/ambassador-program" target="_blank">Ambassador Program</a><span><img src="/blog/assets/img/external-link.svg" /></span></p>
+          <p><a href="https://auth0.com/guest-authors" target="_blank">Guest Author Program</a><span><img src="/blog/assets/img/external-link.svg" /></span></p>
+          <p><a href="https://community.auth0.com/" target="_blank">Auth0 Community</a><span><img src="/blog/assets/img/external-link.svg" /></span></p>
+          <p><a href="https://auth0.com/learn/" target="_blank">Resources</a><span><img src="/blog/assets/img/external-link.svg" /></span></p>
+        </li>
+      </ul>
+      <div class="footer-hr"></div>
+      <div class="last-line-wrapper">
+        <ul class="auth0-social-links">
+          <li><a href="https://twitter.com/auth0" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://www.facebook.com/getauth0" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="https://www.linkedin.com/company/auth0" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a></li>
+          <li><a href="https://www.instagram.com/weareauth0/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://github.com/auth0" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+        </ul>
+        <p>© 2013-2019 Auth0 Inc. All Rights Reserved.</p>
+      </div>
+    </article>
+  </section>
+</footer>
+<!-- btn contact form -->
+<script src="/blog/assets/js/talk-to-sales.js"></script>
+    </main>
+        <!-- ///AB EXPERIMENTS START CODE//// -->
+    <script type="text/javascript">
+      try {
+        window.abTestingLib.load({ fetchFn: function () { return $.get('https://ab.it.auth0.com/?application=website'); } });
+        window.abTestingLib.integration('auth0metrics').start({ metrics: window.metricsLib });
+        window.abTestingLib.start().then(enhanceAnalytics).then(function () {
+          try {
+            window.abLoaded = true;
+            // Save experiments on the global scope
+            window.experiments = window.abTestingLib.getExperiments();
+            executeABExperiments();
+          } catch (e) {
+            console.error('Error running AB experiments.');
+            $('#pjax').css('visibility', 'visible');
+            window.abLoaded = true;
+          }
+        });
+        function enhanceAnalytics() {
+          var analytics = window.abTestingLib.analytics;
+          var originalSetCurrentVariantName = analytics.setCurrentVariantName.bind(analytics);
+          var originalGetCurrentVariantName = analytics.getCurrentVariantName.bind(analytics);
+          window.setVariant = enhancedSetCurrentVariantName;
+          window.getVariant = enhancedGetCurrentVariantName;
+          var enhancedSetCurrentVariantName = function (variantName, value) {
+            setCurrentVariantName(variantName, value);
+            originalSetCurrentVariantName(variantName, value);
+          };
+          var enhancedGetCurrentVariantName = function (variantName) {
+            var originalValue = originalGetCurrentVariantName(variantName);
+            var cookieValue = getCurrentVariantName(variantName);
+            if (originalValue != cookieValue) {
+              originalSetCurrentVariantName(variantName, cookieValue);
+            }
+            return cookieValue;
+          };
+          analytics.setCurrentVariantName = enhancedSetCurrentVariantName;
+          analytics.getCurrentVariantName = enhancedGetCurrentVariantName;
+          window.setVariant = enhancedSetCurrentVariantName;
+          window.getVariant = enhancedGetCurrentVariantName;
+        }
+        function setCurrentVariantName(variantName, value) {
+          var variants = loadCookieVariants();
+          variants[variantName] = value;
+          saveCookieVariants(variants);
+        }
+        function getCurrentVariantName(variantName) {
+          var variants = loadCookieVariants();
+          return variants[variantName];
+        }
+        function loadCookieVariants() {
+          return JSON.parse(Cookies.get('ajs_ab.traits') || '{}');
+        }
+        function saveCookieVariants(variants) {
+          return Cookies.set('ajs_ab.traits', JSON.stringify(variants), {
+            expires: 365,
+            path: '/'
+          });
+        }
+      } catch (e) {
+        console.error('Error initializing ABTesting lib. ABTesting will be disabled');
+        $('#pjax').css('visibility', 'visible');
+        window.abLoaded = true;
+      }
+    </script>
+    <script type="text/javascript">
+      function executeABExperiment(experimentName, callback) {
+        var path = window.location.pathname;
+        var experiments = window.experiments;
+        if (!experimentName) {
+          return callback && callback(null);
+        }
+        var experiment = abTestingLib.experiments.findByName(experimentName);
+        if (!experiment) {
+          return callback && callback(null);
+        }
+        var variant = experiment.run();
+        return callback && callback(variant);
+      }
+      function executeABExperiments() {
+        var path = window.location.pathname;
+        var experiments = window.experiments;
+        if (!window.abLoaded) {
+          return;
+        }
+        if (!experiments) {
+          // Restore content
+          $('#pjax').css('visibility', 'visible');
+          return;
+        }
+        try {
+          var experimentsForPath = experiments.runAllByPath(path);
+          var winningVariants = [];
+          experimentsForPath.experiments.forEach(function (e) {
+            winningVariants = winningVariants.concat(e.getCurrentVariant().getPropertiesByType('js'));
+          });
+          var variantContext = {};
+          variantContext.$ = $;
+          winningVariants.forEach(function (v) {
+            v.runInContext(variantContext);
+          });
+        } catch (e) {
+          console && console.error("Error running experiments for path:%s", path);
+        } finally {
+          // Restore content
+          $('#pjax').css('visibility', 'visible');
+        }
+      }
+    </script>
+    <!-- ///AB EXPERIMENTS END CODE//// -->
+    <!-- ////ON LOAD/// -->
+    <script>
+    (function () {
+      var config = {
+        auth0Domain: 'auth0.auth0.com',
+        auth0ClientID: 'bLR9T5ar6nFtDO4zErGXdoqMCM4iNZSV',
+        auth0CallbackURL: 'https://auth0.com/auth/callback',
+        auth0Audience: 'https://auth0.auth0.com/userinfo',
+        auth0Scope: 'openid profile email',
+      };
+      var auth0WebAuth = new auth0.WebAuth({
+        domain: config.auth0Domain,
+        clientID: config.auth0ClientID,
+        audience: config.auth0Audience,
+        scope: config.auth0Scope,
+        redirectUri: config.auth0CallbackURL,
+        responseType: 'code'
+      });
+      window.signup = (additionalData = {}) => {
+        const data = { category: 'button' };
+        const redirectUri = '/signup?';
+        const { refPage } = additionalData;
+        const queryParams = Object.keys(refPage || []).map(
+          key => `${key}=${encodeURIComponent(refPage[key])}`
+        );
+        window.location.href = `${redirectUri}${queryParams.join('&')}&signUpData=${encodeURIComponent(
+          JSON.stringify(data)
+        )}`;
+      }
+    })();
+    </script>
+    <div id="pjax">
+    <!-- ////ON LOAD END//// -->
+    <!-- Facebook -->
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=534074790006350&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- Twitter -->
+    <script type="text/javascript">
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    </script>
+  <script src="/blog/assets/js/vendor/js-cookie.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    // ab-watchdog, after 1500ms, show the site content no matter the state
+    // of the experiments
+    setTimeout(function () {
+      $('#pjax').css('visibility', 'visible');
+    }, 400);
+  </script>
+  <!-- ////STUFF -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/elm.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="/blog/assets/js/vendor/nprogress.js"></script>
+  <script src="/blog/assets/js/vendor/moment.min.js"></script>
+  <script src="/blog/assets/js/vendor/jquery.csbuttons.min.js"></script>
+  <script async src="/blog/assets//js/vendor/html2canvas.js"></script>
+  <script src="/blog/assets/js/vendor/selection-sharer.min.js"></script>
+  <script src="/blog/assets/js/vendor/jquery.sticky-kit.min.js"></script>
+  <script src="/blog/assets/js/vendor/jquery.ba-throttle-debounce.min.js"></script>
+  <script src="/blog/assets/js/vendor/prism.js"></script>
+  <script type="text/javascript">
+    var getBasicInfo = function () {
+      return {
+        path: window.location.pathname,
+        url: window.location.toString(),
+        title: document.title,
+        referrer: document.referrer,
+        category: 'Lock',
+        label: 'blog'
+      }
+    };
+    $(function() {
+      function initialize() {
+        $('pre code').each(function(i, block) {
+           hljs.highlightBlock(block);
+        });
+        $('#post-date').each(function() {
+          var $current = $(this);
+          var dateString = new Date($current.text());
+          var diff = moment(dateString).diff(moment(new Date()), 'days');
+          var dateFormat;
+          dateFormat = moment(dateString).fromNow();
+          if(diff > -10) {
+            $current.text(dateFormat);
+          }
+          if (diff === 0) {
+            $current.text('Today');
+          }
+          $current.addClass('rendered');
+        });
+        // Social Buttons
+        $('.social-stats .network').cSButtons();
+        // Force content links to _blank if not explicitly set to _self
+        $('.entry-content a').each(function() {
+          var _$this = $(this);
+          var _target = _$this.attr('target');
+          if (_target !== '_self') {
+           _$this.attr('target', '_blank');
+          }
+        });
+      }
+      function setEvents() {
+        hljs.configure({
+          tabReplace: '  ', // 4 spaces
+          classPrefix: ''
+        });
+        NProgress.configure({ showSpinner: false, trickleSpeed: 600 });
+        metricsLib.page();
+        $('p').selectionSharer();
+        var selectionSharerFacebook = $('#selectionSharerPopover-inner .action.facebook')[0];
+        $(selectionSharerFacebook).on('click', function() {
+          metricsLib.track('blog:share:custom:facebook');
+        });
+        var selectionSharerTwitter = $('#selectionSharerPopover-inner .action.tweet')[0];
+        $(selectionSharerTwitter).on('click', function() {
+          metricsLib.track('blog:share:custom:twitter');
+        });
+        var selectionSharerEmail = $('#selectionSharerPopover-inner .action.email')[0];
+        $(selectionSharerEmail).on('click', function() {
+          metricsLib.track('blog:share:custom:email');
+        });
+        $(window).on('load', function() {
+          $(document.body).trigger("sticky_kit:recalc");
+        });
+        $('body').on('click', '.blog-navigation a', function() {
+          var tabs = $('.blog-navigation li');
+          var activeTab = $(this).parent();
+          $(window).data('navScroll', $(window).scrollTop());
+          tabs.removeClass('active');
+          activeTab.addClass('active');
+        });
+        initialize();
+      }
+      setEvents();
+    });
+  </script>
+  <script>
+    $(function () {
+      $('.tweet-quote').on('click', function () {
+        metricsLib.track('blog:share:twitter_quote');
+      });
+    });
+  </script>
+  <!-- begin for embedded tweets -->
+  <style>
+    div.tweet iframe {
+      border: none !important;
+      box-shadow: none !important;
+    }
+  </style>
+  <script>
+    window.addEventListener("load", function () {
+      twttr.ready(function (twttr) {
+        $("div.tweet").each(function( i ) {
+          var tweetID = $(this).attr("tweetID");
+          $(this).empty();
+          twttr.widgets.createTweet(
+            tweetID, this,
+            {
+              conversation : 'none',    // or all
+              cards        : 'hidden',  // or visible
+              linkColor    : '#cc0000', // default is blue
+              theme        : 'light'    // or dark
+            })
+            .then (function (el) {
+                el.contentDocument.querySelector(".footer").style.display = "none";
+              }
+            );
+        });
+      });
+    }, false);
+  </script>
+  <!-- end for embedded tweets -->
+  <script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:301495,hjsv:5};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js"></script>
+  <script src="/blog/assets/js/firebase-pn.js"></script>
+  <script type="text/javascript"> _linkedin_data_partner_id = "30812"; </script>
+  <script type="text/javascript">
+    (function () {
+      var s = document.getElementsByTagName("script")[0];
+      var b = document.createElement("script");
+      b.type = "text/javascript";
+      b.async = true;
+      b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+      s.parentNode.insertBefore(b, s); })();
+  </script>
+  <!-- OneTrust Cookies Consent Notice (Production CDN, auth0.com, en-GB) start -->
+  <script src="https://cdn.cookielaw.org/consent/b9a6ce49-e39b-4ac1-b776-b740bd27ba7b.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    function OptanonWrapper() { }
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=30812&fmt=gif" />
+  </noscript>
+  </body>
+  <script>
+    var SlidingPopup = window.Auth0SlidingPopup.default;
+    ReactDOM.render(React.createElement(SlidingPopup, { source: 'blog' }), document.getElementById('popup'));
+  </script>
+</html>

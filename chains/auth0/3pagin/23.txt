@@ -1,0 +1,26 @@
+  <ul class="pagination">
+      <div class="pagination-border">
+          <li class="pagination-item previous">
+              <a href="/blog/developers/page22/"><i class="fas fa-angle-double-left"></i></a>
+          </li>
+          <li class="pagination-item">
+              <a href="/blog/developers/page21/" title="Developers">21</a>
+          </li>
+          <li class="pagination-item">
+              <a href="/blog/developers/page22/" title="Developers">22</a>
+          </li>
+          <li class="pagination-item selected">
+              <a href="/blog/developers/page23/" title="Developers">23</a>
+          </li>
+          <li class="pagination-item">
+              <a href="/blog/developers/page24/" title="Developers">24</a>
+          </li>
+          <li class="pagination-item">
+              <a href="/blog/developers/page25/" title="Developers">25</a>
+          </li>
+          <li class="pagination-item next">
+              <a href="/blog/developers/page24/"><i class="fas fa-angle-double-right"></i></a>
+          </li>
+      </div>
+  </ul>
+
